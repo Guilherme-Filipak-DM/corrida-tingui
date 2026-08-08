@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1ª Corrida Distrital Tingui — Inscrição</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --bg:#0f1117;
+    --surface:#1a1d27;
+    --surface-2:#242836;
+    --accent:#ff5e2b;
+    --accent-hover:#ff7a50;
+    --accent-glow:rgba(255,94,43,.25);
+    --green:#2ecc71;
+    --text:#f0f0f0;
+    --text-muted:#8a8fa3;
+    --radius:12px;
+  }
+
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    min-height:100vh;
+  }
+
+  /* ── HERO ── */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:3rem 1.5rem 2.5rem;
+    text-align:center;
+    background:linear-gradient(165deg,#1b1f2e 0%,#0f1117 50%,#1a0f0a 100%);
+  }
+  .hero::before{
+    content:'';
+    position:absolute;
+    top:-60%;right:-30%;
+    width:500px;height:500px;
+    background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .hero-badge{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:.95rem;
+    letter-spacing:3px;
+    padding:6px 18px;
+    border-radius:4px;
+    margin-bottom:1rem;
+  }
+  .hero h1{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(2.8rem,8vw,4.5rem);
+    line-height:.95;
+    letter-spacing:2px;
+    margin-bottom:.5rem;
+  }
+  .hero h1 span{color:var(--accent)}
+  .hero-sub{
+    font-size:1.05rem;
+    color:var(--text-muted);
+    margin-bottom:1.5rem;
+  }
+
+  /* ── INFO GRID ── */
+  .info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:12px;
+    max-width:600px;
+    margin:0 auto 1.5rem;
+  }
+  .info-card{
+    background:var(--surface);
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:var(--radius);
+    padding:14px 10px;
+    text-align:center;
+  }
+  .info-card .label{font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:4px}
+  .info-card .value{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;color:var(--text)}
+
+  .divider{
+    width:60px;height:3px;
+    background:var(--accent);
+    border-radius:2px;
+    margin:0 auto 1.5rem;
+  }
+
+  .schedule{
+    max-width:400px;margin:0 auto 0;
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .schedule-row{
+    display:flex;align-items:center;gap:10px;
+    font-size:.92rem;
+  }
+  .schedule-row .time{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.1rem;
+    color:var(--accent);
+    min-width:55px;
+    text-align:right;
+  }
+
+  /* ── CONTAINER ── */
+  .container{
+    max-width:520px;
+    margin:0 auto;
+    padding:2rem 1.5rem 3rem;
+  }
+
+  /* ── PIX SECTION ── */
+  .pix-section{
+    background:var(--surface);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:var(--radius);
+    padding:1.5rem;
+    margin-bottom:2rem;
+    text-align:center;
+  }
+  .pix-section h2{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.6rem;
+    letter-spacing:1px;
+    margin-bottom:.3rem;
+  }
+  .pix-section p{font-size:.85rem;color:var(--text-muted);margin-bottom:1rem}
+
+  .pix-prices{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:1.2rem;
+  }
+  .price-tag{
+    background:var(--surface-2);
+    border-radius:8px;
+    padding:12px 8px;
+  }
+  .price-tag .tier{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:2px}
+  .price-tag .amount{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--accent)}
+  .price-tag .desc{font-size:.75rem;color:var(--text-muted)}
+
+  .pix-key-box{
+    background:var(--bg);
+    border:1px dashed rgba(255,255,255,.15);
+    border-radius:8px;
+    padding:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .pix-key-box code{
+    font-size:.72rem;
+    word-break:break-all;
+    color:var(--text-muted);
+    flex:1;
+    min-width:0;
+    text-align:left;
+  }
+  .btn-copy{
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    font-size:.8rem;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background .2s;
+  }
+  .btn-copy:hover{background:var(--accent-hover)}
+  .btn-copy.copied{background:var(--green)}
+
+  /* ── FORM ── */
+  .form-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.8rem;
+    letter-spacing:1px;
+    margin-bottom:1.5rem;
+    text-align:center;
+  }
+
+  .field{margin-bottom:1.3rem}
+  .field label{
+    display:block;
+    font-size:.8rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--text-muted);
+    margin-bottom:6px;
+  }
+  .field input[type="text"],
+  .field input[type="tel"]{
+    width:100%;
+    background:var(--surface);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:8px;
+    padding:12px 14px;
+    color:var(--text);
+    font-size:.95rem;
+    font-family:inherit;
+    outline:none;
+    transition:border-color .2s;
+  }
+  .field input:focus{border-color:var(--accent)}
+
+  /* radio cards */
+  .radio-group{display:flex;gap:10px;flex-wrap:wrap}
+  .radio-card{flex:1;min-width:120px}
+  .radio-card input{display:none}
+  .radio-card .card-label{
+    display:block;
+    background:var(--surface);
+    border:2px solid rgba(255,255,255,.08);
+    border-radius:8px;
+    padding:14px 12px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .2s, background .2s;
+    font-size:.9rem;
+    font-weight:500;
+  }
+  .radio-card .card-label small{display:block;font-size:.75rem;color:var(--text-muted);margin-top:2px;font-weight:400}
+  .radio-card input:checked + .card-label{
+    border-color:var(--accent);
+    background:rgba(255,94,43,.08);
+  }
+
+  /* file upload */
+  .upload-area{
+    background:var(--surface);
+    border:2px dashed rgba(255,255,255,.12);
+    border-radius:var(--radius);
+    padding:2rem 1rem;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .2s,background .2s;
+    position:relative;
+  }
+  .upload-area:hover{border-color:var(--accent);background:rgba(255,94,43,.04)}
+  .upload-area.has-file{border-color:var(--green);border-style:solid}
+  .upload-area input[type="file"]{
+    position:absolute;inset:0;opacity:0;cursor:pointer;
+  }
+  .upload-icon{font-size:2rem;margin-bottom:.5rem}
+  .upload-text{font-size:.85rem;color:var(--text-muted)}
+  .upload-text strong{color:var(--text)}
+  .upload-filename{
+    margin-top:8px;
+    font-size:.8rem;
+    color:var(--green);
+    font-weight:600;
+    display:none;
+  }
+  .upload-area.has-file .upload-filename{display:block}
+  .upload-preview{
+    margin-top:10px;
+    max-width:200px;
+    max-height:150px;
+    border-radius:6px;
+    display:none;
+  }
+  .upload-area.has-file .upload-preview{display:inline-block}
+
+  /* submit */
+  .btn-submit{
+    width:100%;
+    padding:16px;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:var(--radius);
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.4rem;
+    letter-spacing:2px;
+    cursor:pointer;
+    transition:background .2s,transform .1s;
+    margin-top:.5rem;
+  }
+  .btn-submit:hover{background:var(--accent-hover)}
+  .btn-submit:active{transform:scale(.98)}
+  .btn-submit:disabled{opacity:.5;cursor:not-allowed}
+
+  .deadline{
+    text-align:center;
+    margin-top:1rem;
+    font-size:.8rem;
+    color:var(--text-muted);
+  }
+  .deadline strong{color:var(--accent)}
+
+  /* success overlay */
+  .overlay{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(15,17,23,.95);
+    z-index:100;
+    align-items:center;justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    padding:2rem;
+  }
+  .overlay.show{display:flex}
+  .overlay .check{font-size:4rem;margin-bottom:1rem}
+  .overlay h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.5rem}
+  .overlay p{color:var(--text-muted);max-width:320px}
+
+  /* loading spinner */
+  .spinner{display:none;margin:1rem auto 0}
+  .spinner.show{display:block}
+  .spinner::after{
+    content:'';display:block;width:28px;height:28px;margin:0 auto;
+    border:3px solid rgba(255,255,255,.15);
+    border-top-color:var(--accent);
+    border-radius:50%;
+    animation:spin .6s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .error-msg{
+    background:rgba(231,76,60,.15);
+    border:1px solid rgba(231,76,60,.3);
+    color:#e74c3c;
+    border-radius:8px;
+    padding:10px 14px;
+    font-size:.85rem;
+    margin-top:1rem;
+    display:none;
+    text-align:center;
+  }
+  .error-msg.show{display:block}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">16 DE AGOSTO</div>
+  <h1>1ª CORRIDA<br><span>DISTRITAL TINGUI</span></h1>
+  <p class="hero-sub">Parque Barigui — Curitiba/PR</p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="label">Percursos</div>
+      <div class="value">5K / 10K</div>
+    </div>
+    <div class="info-card">
+      <div class="label">Modalidades</div>
+      <div class="value">Corrida & Caminhada</div>
+    </div>
+    <div class="info-card">
+      <div class="label">Confraternização</div>
+      <div class="value">Comida 🍖</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="schedule">
+    <div class="schedule-row"><span class="time">7h</span> Retirada de kit e aquecimento</div>
+    <div class="schedule-row"><span class="time">7h30</span> Largada</div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- PIX -->
+  <div class="pix-section">
+    <h2>Pagamento via Pix</h2>
+    <p>Faça o Pix, tire print e anexe no formulário abaixo.</p>
+
+    <div class="pix-prices">
+      <div class="price-tag">
+        <div class="tier">Sem medalha</div>
+        <div class="amount">R$ 9,90</div>
+      </div>
+      <div class="price-tag">
+        <div class="tier">Com medalha</div>
+        <div class="amount">R$ 19,90</div>
+      </div>
+    </div>
+
+    <div class="pix-key-box">
+      <code id="pixKey">083083e7-11ec-4c9c-a491-4be211f1ad2e</code>
+      <button class="btn-copy" id="btnCopy" onclick="copyPix()">Copiar Pix</button>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <h2 class="form-title">Inscrição</h2>
+
+  <form id="regForm" onsubmit="submitForm(event)">
+
+    <div class="field">
+      <label>Nome completo</label>
+      <input type="text" name="nome" required placeholder="Seu nome">
+    </div>
+
+    <div class="field">
+      <label>WhatsApp (com DDD)</label>
+      <input type="tel" name="whatsapp" required placeholder="(41) 99999-9999">
+    </div>
+
+    <div class="field">
+      <label>Percurso</label>
+      <div class="radio-group">
+        <div class="radio-card">
+          <input type="radio" name="percurso" id="p5" value="5km" required>
+          <label for="p5" class="card-label">5 km</label>
+        </div>
+        <div class="radio-card">
+          <input type="radio" name="percurso" id="p10" value="10km">
+          <label for="p10" class="card-label">10 km</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Modalidade</label>
+      <div class="radio-group">
+        <div class="radio-card">
+          <input type="radio" name="modalidade" id="mCorrida" value="Corrida" required>
+          <label for="mCorrida" class="card-label">🏃 Corrida</label>
+        </div>
+        <div class="radio-card">
+          <input type="radio" name="modalidade" id="mCaminhada" value="Caminhada">
+          <label for="mCaminhada" class="card-label">🚶 Caminhada</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Participação</label>
+      <div class="radio-group">
+        <div class="radio-card">
+          <input type="radio" name="participacao" id="semMedalha" value="Sem medalha — R$9,90" required>
+          <label for="semMedalha" class="card-label">Sem medalha<small>R$ 9,90</small></label>
+        </div>
+        <div class="radio-card">
+          <input type="radio" name="participacao" id="comMedalha" value="Com medalha — R$19,90">
+          <label for="comMedalha" class="card-label">Com medalha 🏅<small>R$ 19,90</small></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Comprovante do Pix</label>
+      <div class="upload-area" id="uploadArea">
+        <input type="file" accept="image/*" id="fileInput" onchange="handleFile(this)">
+        <div class="upload-icon">📎</div>
+        <div class="upload-text">Toque para <strong>anexar o comprovante</strong></div>
+        <div class="upload-filename" id="fileName"></div>
+        <img class="upload-preview" id="preview" alt="Preview">
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit" id="btnSubmit">Confirmar Inscrição</button>
+
+    <div class="spinner" id="spinner"></div>
+    <div class="error-msg" id="errorMsg"></div>
+
+    <p class="deadline">Inscrições até <strong>13/08</strong></p>
+  </form>
+</div>
+
+<!-- SUCCESS -->
+<div class="overlay" id="successOverlay">
+  <div class="check">✅</div>
+  <h2>Inscrição Confirmada!</h2>
+  <p>Nos vemos no Parque Barigui dia 16/08. Prepare o tênis!</p>
+</div>
+
+<script>
+  // ╔══════════════════════════════════════════════════╗
+  // ║  COLE AQUI A URL DO SEU GOOGLE APPS SCRIPT      ║
+  // ╚══════════════════════════════════════════════════╝
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhBk8XuOhdgXz-tE9c6rIIuqJdfr9-1lF3vRN4JPXwUmFN34ypb4LdewdZGrXi_N63/exec';
+
+  // ── Copy Pix ──
+  function copyPix() {
+    const key = document.getElementById('pixKey').textContent;
+    navigator.clipboard.writeText(key).then(() => {
+      const btn = document.getElementById('btnCopy');
+      btn.textContent = 'Copiado ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copiar Pix';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // ── File handling ──
+  let fileBase64 = '';
+  let fileName = '';
+
+  function handleFile(input) {
+    const file = input.files[0];
+    if (!file) return;
+    fileName = file.name;
+    document.getElementById('fileName').textContent = file.name;
+    document.getElementById('uploadArea').classList.add('has-file');
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      fileBase64 = e.target.result;
+      document.getElementById('preview').src = fileBase64;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── Submit ──
+  async function submitForm(e) {
+    e.preventDefault();
+
+    if (!fileBase64) {
+      showError('Anexe o comprovante do Pix antes de enviar.');
+      return;
+    }
+
+    if (SCRIPT_URL === 'COLE_SUA_URL_AQUI') {
+      showError('URL do Apps Script não configurada. Veja as instruções.');
+      return;
+    }
+
+    const btn = document.getElementById('btnSubmit');
+    const spinner = document.getElementById('spinner');
+    btn.disabled = true;
+    spinner.classList.add('show');
+    hideError();
+
+    const form = document.getElementById('regForm');
+    const data = {
+      nome: form.nome.value.trim(),
+      whatsapp: form.whatsapp.value.trim(),
+      percurso: form.percurso.value,
+      modalidade: form.modalidade.value,
+      participacao: form.participacao.value,
+      comprovante: fileBase64,
+      nomeArquivo: fileName,
+    };
+
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error('Erro no servidor');
+
+      document.getElementById('successOverlay').classList.add('show');
+    } catch (err) {
+      showError('Erro ao enviar. Tente novamente ou entre em contato.');
+      btn.disabled = false;
+    } finally {
+      spinner.classList.remove('show');
+    }
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+  function hideError() {
+    document.getElementById('errorMsg').classList.remove('show');
+  }
+</script>
+</body>
+</html>
